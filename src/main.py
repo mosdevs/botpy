@@ -3,7 +3,9 @@ import asyncio
 import pandas as pd
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(dotenv_path='D:/Jules/BotPy/botpy/.env')  # use absolute path to be sure
+
+print(os.getenv('TELEGRAM_BOT_TOKEN'))
 
 # Import functions from our modules
 from src.data_acquisition.binance import fetch_ohlcv
