@@ -1,0 +1,9 @@
+python-telegram-bot
+ccxt
+pandas
+pandas-ta
+requests
+numpy<2.0
+transformers
+torch
+newsapi-python
