@@ -1,6 +1,11 @@
 import os
 import asyncio
 import pandas as pd
+from dotenv import load_dotenv
+
+load_dotenv(dotenv_path='D:/Jules/BotPy/botpy/.env')  # use absolute path to be sure
+
+print(os.getenv('TELEGRAM_BOT_TOKEN'))
 
 # Import functions from our modules
 from src.data_acquisition.exchange import fetch_ohlcv
@@ -9,6 +14,12 @@ from src.trading_strategy.simple_strategy import generate_signal
 from src.telegram_bot.bot import send_message
 from src.sentiment_analysis.news_fetcher import fetch_news_headlines
 from src.sentiment_analysis.analyzer import SentimentAnalyzer
+
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
+NEWS_API_KEY = os.getenv("NEWS_API_KEY")
+
+print("Token:", TELEGRAM_BOT_TOKEN)  # optional: test if it works
 
 # --- Configuration ---
 EXCHANGE_NAME = 'kucoin'
@@ -110,13 +121,13 @@ if __name__ == '__main__':
 
     # Due to network/API restrictions in this sandbox, we cannot run the live bot.
     # The following lines show how a user would start the bot.
-    #
+    
     # if "NEWS_API_KEY" not in os.environ:
     #     print("\nError: NEWS_API_KEY is not set. Please set it to run the bot.")
     # else:
     #     try:
-    #         asyncio.run(main())
+    asyncio.run(main())
     #     except KeyboardInterrupt:
     #         print("\nBot stopped by user.")
 
-    print("\nTo start the bot, ensure all environment variables are set and uncomment the asyncio.run(main()) lines in a live environment.")
+    # print("\nTo start the bot, ensure all environment variables are set and uncomment the asyncio.run(main()) lines in a live environment.")
