@@ -120,13 +120,13 @@ if __name__ == '__main__':
 
     # Due to network/API restrictions in this sandbox, we cannot run the live bot.
     # The following lines show how a user would start the bot.
-    #
+    
     # if "NEWS_API_KEY" not in os.environ:
     #     print("\nError: NEWS_API_KEY is not set. Please set it to run the bot.")
     # else:
     #     try:
-    #         asyncio.run(main())
+    asyncio.run(main())
     #     except KeyboardInterrupt:
     #         print("\nBot stopped by user.")
 
-    print("\nTo start the bot, ensure all environment variables are set and uncomment the asyncio.run(main()) lines in a live environment.")
+    # print("\nTo start the bot, ensure all environment variables are set and uncomment the asyncio.run(main()) lines in a live environment.")
