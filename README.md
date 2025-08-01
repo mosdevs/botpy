@@ -1,9 +1,10 @@
 # Crypto Trading Bot with Sentiment Analysis
 
-This project is a Python-based cryptocurrency trading bot that uses a combination of technical analysis and news sentiment analysis to generate trading signals. It fetches market data from Binance, calculates technical indicators, analyzes the sentiment of recent news headlines, and sends trading alerts via a Telegram bot.
+This project is a Python-based cryptocurrency trading bot that uses a combination of technical analysis and news sentiment analysis to generate trading signals. It fetches market data from KuCoin (by default), calculates technical indicators, analyzes the sentiment of recent news headlines, and sends trading alerts via a Telegram bot.
 
 ## Features
 
+- **Flexible Data Source:** Fetches market data from KuCoin by default, but can be easily configured to use any other exchange supported by the `ccxt` library.
 - **Technical Analysis:** Calculates RSI, MACD, and Bollinger Bands from market data.
 - **Sentiment Analysis:** Fetches crypto-related news from NewsAPI and analyzes the sentiment of the headlines using the `ProsusAI/finbert` model from Hugging Face.
 - **Combined Strategy:** Generates `BUY` or `SELL` signals only when both technical indicators and news sentiment are aligned.
@@ -55,6 +56,9 @@ To run the trading bot, execute the `main.py` script from the root directory:
 python3 src/main.py
 ```
 The bot will start and print its progress to the console, checking for signals at the interval defined in `src/main.py`.
+
+### Changing the Exchange
+The bot uses KuCoin by default. To use a different exchange, simply change the `EXCHANGE_NAME` variable at the top of the `src/main.py` file to any other exchange supported by `ccxt` (e.g., `'gateio'`, `'bybit'`).
 
 ## Running Tests
 
