@@ -8,7 +8,7 @@ load_dotenv(dotenv_path='D:/Jules/BotPy/botpy/.env')  # use absolute path to be 
 print(os.getenv('TELEGRAM_BOT_TOKEN'))
 
 # Import functions from our modules
-from src.data_acquisition.binance import fetch_ohlcv
+from src.data_acquisition.exchange import fetch_ohlcv
 from src.technical_analysis.indicators import add_rsi, add_macd, add_bollinger_bands
 from src.trading_strategy.simple_strategy import generate_signal
 from src.telegram_bot.bot import send_message
@@ -22,6 +22,7 @@ NEWS_API_KEY = os.getenv("NEWS_API_KEY")
 print("Token:", TELEGRAM_BOT_TOKEN)  # optional: test if it works
 
 # --- Configuration ---
+EXCHANGE_NAME = 'kucoin'
 SYMBOL = 'BTC/USDT'
 TIMEFRAME = '1h'
 NEWS_QUERY = 'Bitcoin'  # Query for fetching news articles for sentiment analysis
@@ -33,10 +34,10 @@ async def check_for_signals(analyzer, news_api_key):
     The main logic loop for the trading bot.
     Fetches data, analyzes it, and sends a signal if necessary.
     """
-    print(f"--- Checking for signals for {SYMBOL} at {pd.Timestamp.now()} ---")
+    print(f"--- Checking for signals for {SYMBOL} on {EXCHANGE_NAME.capitalize()} at {pd.Timestamp.now()} ---")
 
     # 1. Fetch Market Data
-    market_data = fetch_ohlcv(symbol=SYMBOL, timeframe=TIMEFRAME, limit=DATA_LIMIT)
+    market_data = fetch_ohlcv(exchange_name=EXCHANGE_NAME, symbol=SYMBOL, timeframe=TIMEFRAME, limit=DATA_LIMIT)
     if market_data is None or market_data.empty:
         print("Could not fetch market data. Skipping this check.")
         return
